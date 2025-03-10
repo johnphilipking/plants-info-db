@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Insert and Update Test Local Forms</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        padding: 1rem;
+        text-align: center;
+        box-sizing: border-box;
+      }
+      .container {
+        position: relative;
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: left;
+        padding: 1.5rem;
+        box-sizing: border-box;
+      }
+
+      label,
+      input,
+      textarea,
+      button,
+      select {
+        display: block;
+        font-size: 1rem;
+        padding: 0.25rem 0.5rem;
+      }
+      input,
+      textarea, select {
+        margin: .25rem 0 1rem;
+      }
+
+      textarea {
+        width: 100%;
+        height: 4rem;
+      }
+
+      button {
+        margin: 0.5rem 0.5rem 2rem;
+      }
+
+      form {
+        border-bottom: 1px dashed cornflowerblue;
+        margin: 0 0 2rem;
+      }
+
+      .blue {
+        color:cornflowerblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Insert Into plants</h2>
+      <form action="http://localhost:3001/plants" method="post">
+        <label for="plant_id">Name
+          <input type="text" name="name" required />
+        </label>
+        <label for="notes"
+          >Notes
+          <textarea name="notes"></textarea>
+        </label>
+        <button type="submit">Insert Record</button>
+      </form>
+
+      <h2>Insert Into plants_attributes_map</h2>
+      <form action="http://localhost:3001/plants/attributes" method="post">
+        <label for="plant_id"
+          >Plant ID
+          <input type="number" name="plant_id" required />
+        </label>
+        <label for="attribute_id"
+          >Attribute ID
+          <input type="number" name="attribute_id" required />
+        </label>
+        <button type="submit">Insert Record</button>
+      </form>
+
+      <h2>Insert Into plant_compatibility</h2>
+      <form action="http://localhost:3001/plants/compatibility" method="post">
+        <label for="plant_ids"
+          >Plant IDs (<i><span class="blue">id1,id2</span> and the lower numeric value is always first</i>)
+          <input type="text" name="plant_ids" required />
+        </label>
+        <label for="compatible"
+          >Compatible
+          <select name="compatible" required />
+          <option value="neutral">neutral</option>
+          <option value="friends">friends</option>
+          <option value="foes">foes</option>
+        </select>
+        </label>
+        <label for="notes">Notes
+          <textarea name="notes"></textarea>
+        </label>
+        <button type="submit">Insert Record</button>
+      </form>
+    </div>
+  </body>
+</html>
