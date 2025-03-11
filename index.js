@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 app.get("/plants", async (_, res) => {
   const sql = neon(`${process.env.DATABASE_URL}`);
   const response = await sql`SELECT * FROM plants ORDER BY name`;
-  res.setHeader('Access-Control-Allow-Credentials', true).json(response);
+  res.setHeader("Access-Control-Allow-Origin", "*").json(response);
 });
 
 app.get("/plants/attributes", async (_, res) => {
