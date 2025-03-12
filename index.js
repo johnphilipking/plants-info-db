@@ -31,7 +31,7 @@ app.get("/plants/compatibility", async (_, res) => {
 
 app.get("/", async (_, res) => {
   const response = { message: "nothing to see here!" };
-  res.json(response);
+  res.setHeader("Access-Control-Allow-Origin", "*").json(response);
 });
 
 /* POST (INSERT) REQUESTS  */
@@ -40,7 +40,7 @@ app.post("/plants", async (req, res) => {
   const sql = neon(`${process.env.DATABASE_URL}`);
   const response =
     await sql`INSERT INTO plants(name,notes) values (${data.name},${data.notes})`;
-  res.json(response);
+    res.setHeader("Access-Control-Allow-Origin", "*").json(response);
 });
 
 app.post("/plants/attributes", async (req, res) => {
@@ -48,7 +48,7 @@ app.post("/plants/attributes", async (req, res) => {
   const sql = neon(`${process.env.DATABASE_URL}`);
   const response =
     await sql`INSERT INTO plants_attributes_map(plant_id,attribute_id) values (${data.plant_id},${data.attribute_id})`;
-  res.json(response);
+    res.setHeader("Access-Control-Allow-Origin", "*").json(response);
 });
 
 app.post("/plants/compatibility", async (req, res) => {
@@ -56,7 +56,7 @@ app.post("/plants/compatibility", async (req, res) => {
   const sql = neon(`${process.env.DATABASE_URL}`);
   const response =
     await sql`INSERT INTO plant_compatibility(plant_ids,compatible,notes) values (${data.plant_ids},${data.compatible},${data.notes})`;
-  res.json(response);
+    res.setHeader("Access-Control-Allow-Origin", "*").json(response);
 });
 
 /* PUT (UPDATE) REQUESTS  */
