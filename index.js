@@ -16,17 +16,17 @@ app.get("/plants", async (_, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*").json(response);
 });
 
-app.get("/plants/attributes", async (_, res) => {
+app.get("/plants/attributes", async (req, res) => {
   const sql = neon(`${process.env.DATABASE_URL}`);
   const response =
     await sql`SELECT a.id AS attributeKey, a.plant_id AS plantId, a.attribute_id AS attributeId, b.attribute AS attributeName, b.attribute_type AS attributeType  FROM plants_attributes_map a LEFT JOIN plant_attributes b ON a.attribute_id=b.id ORDER BY plantId,attributeType,attributeName`;
-  res.json(response);
+    res.setHeader("Access-Control-Allow-Origin", "*").json(response);
 });
 
-app.get("/plants/compatibility", async (_, res) => {
+app.get("/plants/compatibility", async (req, res) => {
   const sql = neon(`${process.env.DATABASE_URL}`);
   const response = await sql`SELECT * FROM plant_compatibility ORDER BY id`;
-  res.json(response);
+  res.setHeader("Access-Control-Allow-Origin", "*").json(response);
 });
 
 app.get("/", async (_, res) => {
